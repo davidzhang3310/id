@@ -1,5 +1,5 @@
 
-const PRECACHE = 'precache-v14';
+const PRECACHE = 'precache-v15';
 const RUNTIME = 'runtime';
 const path = '/id/'
 
@@ -20,6 +20,9 @@ const PRECACHE_URLS = [
     path + 'title3.png',
     path + 'validate.png',
     path + 'hammer.min.js',
+    path + 'phone.jpeg',
+    path + 'globe.jpeg',
+    path + 'govfoot.jpg'
 
 ];
 
