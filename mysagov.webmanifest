@@ -1,0 +1,17 @@
+{
+    "name": "mySAGOV",
+    "short_name": "mySAGOV",
+    "description": "mySAGOV App.",
+    "icons": [
+        {
+            "src": "./icon.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "./index.html",
+    "display": "fullscreen",
+    "theme_color": "#000000",
+    "background_color": "#000000",
+    "orientation": "portrait-primary"
+}
