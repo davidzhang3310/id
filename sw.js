@@ -1,5 +1,5 @@
 
-const PRECACHE = 'precache-v13';
+const PRECACHE = 'precache-v14';
 const RUNTIME = 'runtime';
 const path = '/id/'
 
