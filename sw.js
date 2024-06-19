@@ -1,11 +1,11 @@
 
-const PRECACHE = 'precache-v18';
+const PRECACHE = 'precache-v19s';
 const RUNTIME = 'runtime';
 const path = '/id/'
 
 const PRECACHE_URLS = [
     path + 'icon.png',
-    path + 'barcode.gif',
+    path + 'barcode.png',
     path + 'content.png',
     path + 'example-signature.png',
     path + 'index.html',
