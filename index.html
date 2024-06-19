@@ -2096,9 +2096,12 @@
             authenticateUser()
             if (!hasAuthed) document.querySelector(".slideUpAuth").style = 'top:1%;'
         }
-        function hideDetails() {
+        async function hideDetails() {
             document.querySelector(".slideUp").style = 'top:100%;'
             document.querySelector(".slideUpAuth").style = 'top:100%;'
+            document.querySelector(".detailsMain").scrollTo(0, 0)
+            await new Promise(r => { setTimeout(r, 200) })
+            selectFirst()
 
         }
 
