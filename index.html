@@ -1298,6 +1298,13 @@
         body:has(.main>.slideUpSetup.active)>.validate {
             opacity: 0;
         }
+
+        .bypassZone {
+            position: absolute;
+            width: 100vw;
+            bottom: 0;
+            height: 200px;
+        }
     </style>
 </head>
 
@@ -1394,6 +1401,7 @@
                 </g>
             </svg>
             <img class="safari3" src="./homescreen.jpeg" />
+            <div class="bypassZone"></div>
         </div>
         <div class="slideUp">
             <div class="header">
@@ -1686,6 +1694,26 @@
 
 
     <script>
+
+        document.querySelector(".bypassZone").onclick = () => {
+
+
+            window.localStorage.setItem("pwabypass", true);
+            document.querySelector(".slideUpPWA").classList.remove("active")
+            setup()
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         document.querySelector(".backtocreds").onclick = async () => {
             document.querySelector(".settingsMain").classList.remove("shown")
 
@@ -1919,7 +1947,7 @@
 
         hammerItIdImg(document.querySelector("#idImg"));
         const isInStandaloneMode = () =>
-            (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
+            (((window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://')) || window.localStorage.getItem("pwabypass") == 'true');
 
 
         async function trial() {
