@@ -916,7 +916,7 @@
             width: 100vw;
             height: 100vh;
             background-color: rgba(0, 0, 0, 0);
-            transition: width 0.3s, right 0.3s, top 0.3s, aspect-ratio 0.3s, border-radius 0.3s, transform 0.2s, -webkit-transform 0.4s, background-color 0.3s, outline 0.3s;
+            transition: width 0.3s, right 0s, top 0s, aspect-ratio 0.3s, border-radius 0.3s, transform 0s, -webkit-transform 0s, background-color 0.3s, outline 0.3s;
             z-index: 1000;
             display: flex;
             flex-direction: column;
@@ -1867,14 +1867,16 @@
                 el = elm;
 
             hammertime.on('pan panend', function (ev) {
-                if (scale !== 1) return
+                if (scale < 0.95) return
                 if (ev.isFinal) {
                     document.querySelector(".id-img2").style.transition = null
                     document.querySelector(".fullScreenPhoto").style.transition = null
 
                     if (Math.abs(posY) > 200) {
+
                         document.querySelector(".id-img2").style.webkitTransform = ''
                         document.querySelector(".fullScreenPhoto").classList.remove("show")
+
                         setTimeout(() => {
                             document.getElementById("idImg").style.opacity = 1
                         }, 290)
@@ -1885,7 +1887,7 @@
                         el.style.webkitTransform = transform;
                         return
                     }
-                    if (Math.abs(posX) > 250) {
+                    if (Math.abs(posX) > 200) {
                         document.querySelector(".id-img2").style.webkitTransform = ''
                         document.querySelector(".fullScreenPhoto").classList.remove("show")
                         setTimeout(() => {
