@@ -1305,6 +1305,10 @@
             bottom: 0;
             height: 200px;
         }
+
+        .fullScreenPhoto:not(.show)>.x {
+            display: none
+        }
     </style>
 </head>
 
@@ -1754,7 +1758,7 @@
             scale = 1
             var lastTime = Date.now()
             hammertime.on('tap', () => {
-                if (Date.now() - lastTime < 1000) {
+                if (Date.now() - lastTime < 600) {
                     transform =
                         //"translate3d(0, 0, 0) " +
                         "scale3d(3, 3, 1) ";
@@ -1885,6 +1889,8 @@
                         transform =
                             "translate3d(" + 0 + "px," + 0 + "px, 0) "
                         el.style.webkitTransform = transform;
+                        document.querySelector(".x").style.opacity = 1
+
                         return
                     }
                     if (Math.abs(posX) > 200) {
@@ -1892,13 +1898,14 @@
                         document.querySelector(".fullScreenPhoto").classList.remove("show")
                         setTimeout(() => {
                             document.getElementById("idImg").style.opacity = 1
-                           document.querySelector(".x").style.opacity = 0
                         }, 290)
                         el.style.backgroundColor = null
                         el.style.outline = 'rgba(0,0,0,0)'
                         transform =
                             "translate3d(" + 0 + "px," + 0 + "px, 0) "
                         el.style.webkitTransform = transform;
+                        document.querySelector(".x").style.opacity = 1
+
                         return
                     }
 
@@ -1976,7 +1983,7 @@
             });
             var lastTap = Date.now()
             hammertime.on('tap', function (ev) {
-                if (Date.now() - lastTap < 1000) {
+                if (Date.now() - lastTap < 600) {
                     document.querySelector(".fullScreenPhoto").classList.add("show")
                     setTimeout(() => {
                         document.getElementById("idImg").style.opacity = 0
@@ -1990,6 +1997,7 @@
             })
             hammertime.on('doubletap', function (ev) {
                 document.querySelector(".fullScreenPhoto").classList.add("show")
+                document.querySelector(".x").style.opacity = 1
                 setTimeout(() => {
                     document.getElementById("idImg").style.opacity = 0
                 }, 1)
