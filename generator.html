@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator</title>
+</head>
+
+<body>
+    <div style="display:flex;flex-direction: column;width:400px;gap:10px">
+        <input type="text" oninput="this.value = this.value.toUpperCase()" placeholder="licence number"
+            id="licenceNumber">
+        <input type="text" placeholder="dob (dd/mm/yyyy)" id="dob">
+        <input type="text" placeholder="name" oninput="this.value = this.value.toUpperCase()" id="name">
+
+        <input type="text" placeholder="street address" oninput="this.value = this.value.toUpperCase()" id="street">
+
+        <label for="photo">Photo (face):</label>
+        <input type="file" id="photo">
+
+        <label for="signature">Photo (signature):</label>
+        <input type="file" id="signature">
+
+        <button>Generate</button>
+        <p></p>
+    </div>
+    <script defer>
+        let facePhoto;
+        let signaturePhoto;
+
+        var face = document.querySelector("#photo")
+        var signature = document.querySelector("#signature")
+        var button = document.querySelector("button")
+
+
+        face.addEventListener('change', function (event) {
+            var selectedFile = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                facePhoto = e.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        });
+        signature.addEventListener('change', function (event) {
+            var selectedFile = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                signaturePhoto = e.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        });
+
+
+
+        button.onclick = () => {
+            var licenceNumber = document.querySelector("#licenceNumber").value
+            var dob = document.querySelector("#dob").value
+            var name = document.querySelector("#name").value
+            var street = document.querySelector("#street").value
+
+            var content = btoa(JSON.stringify({ "licenceNumber": licenceNumber || "", "DOB": dob || "", "name": name || "", "address": street || "", "imgData": facePhoto || "", "signatureImgData": signaturePhoto || "" }))
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'output.idkey';
+            a.click();
+
+            URL.revokeObjectURL(url);
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
